@@ -12,7 +12,25 @@ func TestAssertFunction(t *testing.T) {
 		AssertFunction(t, "Generics Tests", result)
 	})
 }
+
+// Use Comparable to make generics data type
 func AssertFunction[T comparable](t *testing.T, expected, result T) {
+	t.Helper()
+	if expected != result {
+		t.Errorf("result %v, expected %v", result, expected)
+	}
+}
+
+// Use interface to manage an assert
+func AssertUsingInterface(t *testing.T, expected, result interface{}) {
+	t.Helper()
+	if expected != result {
+		t.Errorf("result %v, expected %v", result, expected)
+	}
+}
+
+// Use any to manage an assert
+func AssertWithAny(t *testing.T, expected, result any) {
 	t.Helper()
 	if expected != result {
 		t.Errorf("result %v, expected %v", result, expected)
